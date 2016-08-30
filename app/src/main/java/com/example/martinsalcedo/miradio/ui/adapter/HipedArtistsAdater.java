@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.martinsalcedo.miradio.R;
 import com.example.martinsalcedo.miradio.domain.Artist;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,14 @@ public class HipedArtistsAdater extends RecyclerView.Adapter<HipedArtistsAdater.
 //        Log.d(TAG, currentArtist.getNombre());
         Log.d(TAG, String.valueOf(currentArtist.getNombre()));
         holder.setArtisName(currentArtist.getNombre());
+
+//        setear la imagen
+
+        if (currentArtist.getMediumImage() != null){
+            holder.setArtistImage(currentArtist.getMediumImage());
+        }else{
+            holder.setArtistDefaultImage();
+        }
     }
 
     @Override
@@ -83,6 +92,16 @@ public class HipedArtistsAdater extends RecyclerView.Adapter<HipedArtistsAdater.
 //se crea un metodo para modificar el contenido
         public void setArtisName(String name){
             artistName.setText(name);
+        }
+
+        public void setArtistImage(String url){
+            Picasso.with(context)
+                    .load(url)
+                    .placeholder(R.drawable.artist_hiped).into(imageArtist);
+        }
+
+        public void setArtistDefaultImage(){
+            Picasso.with(context).load(R.drawable.artist_hiped).into(imageArtist);
         }
     }
 

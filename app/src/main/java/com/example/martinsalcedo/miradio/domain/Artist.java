@@ -14,6 +14,9 @@ public class Artist {
     String urlLargeImage;
     String MediumImage;
 
+    public Artist() {
+    }
+
     public String getUrlLargeImage() {
         return urlLargeImage;
     }
